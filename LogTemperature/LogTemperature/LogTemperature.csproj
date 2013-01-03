@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GoIOdotNET">
-      <HintPath>..\..\..\..\..\Downloads\GoIO_SDK\GoIO_SDK\redist\GoIO_DLL\dotNET\GoIOdotNET.dll</HintPath>
+    <Reference Include="GoIOdotNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GoIO_SDK\GoIOdotNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -44,8 +45,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="VSTCoreDefsdotNET">
-      <HintPath>..\..\..\..\..\Downloads\GoIO_SDK\GoIO_SDK\redist\VSTCoreDefsdotNET\VSTCoreDefsdotNET.dll</HintPath>
+    <Reference Include="VSTCoreDefsdotNET, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GoIO_SDK\VSTCoreDefsdotNET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
