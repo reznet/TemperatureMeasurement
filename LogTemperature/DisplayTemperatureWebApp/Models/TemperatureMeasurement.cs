@@ -11,6 +11,10 @@ namespace DisplayTemperatureWebApp.Models
 
         public double TemperatureCelcius { get; set; }
 
+        public double TemperatureFahrenheit { get; set; }
+
         public DateTimeOffset MeasurementTimestamp { get; set; }
+
+        public DateTime MeasurementDateTimeUtc { get; set; }
     }
 }

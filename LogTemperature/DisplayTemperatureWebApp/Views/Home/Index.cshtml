@@ -5,23 +5,99 @@
     <link href="../../Content/Site.css" rel="stylesheet" />
     <script src="../../Scripts/jquery-1.7.1.min.js" 
         type="text/javascript"></script>
+    <script src="../../Scripts/Highcharts-2.3.5/js/highcharts.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
                 // Send an AJAX request
-                $.getJSON("api/temperaturemeasurement/",
+                $.getJSON("api/latesttemperature/",
                 function (data) {
                     // On success, 'data' contains a list of products.
                     $.each(data, function (key, val) {
 
+                        if (key != "TemperatureFahrenheit") return;
                         // Format the text to display.
-                        var str = val.MeasurementTimestamp + ":" + val.TemperatureCelcius;
+                        var str = val;
+                        //var str = val.MeasurementTimestamp + ":      " + val.TemperatureFahrenheit + "F";
+
+                        $('#latest').text(str);
 
                         // Add a list item for the product.
                         $('<li/>', { text: str })
                         .appendTo($('#products'));
                     });
                 });
+
+                $.getJSON("api/temperature/",
+                    function (data) {
+                        var items = [];
+                        
+                        //[Date.UTC(1970, 9, 27), 0],
+                        $.each(data, function (key, val) {
+                            var d = new Date(val.MeasurementDateTimeUtc);
+                            items.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
+                        });
+
+                        items = items.reverse();
+
+                        var good = [ 
+                                        [Date.UTC(1970, 9, 27), 0],
+                                        [Date.UTC(1970, 10, 10), 0.6],
+                                        [Date.UTC(1970, 10, 18), 0.7],
+                                        [Date.UTC(1970, 11, 2), 0.8],
+                                        [Date.UTC(1970, 11, 9), 0.6],
+                                        [Date.UTC(1970, 11, 16), 0.6],
+                                        [Date.UTC(1970, 11, 28), 0.67],
+                                        [Date.UTC(1971, 0, 1), 0.81],
+                                        [Date.UTC(1971, 0, 8), 0.78],
+                                        [Date.UTC(1971, 0, 12), 0.98],
+                                        [Date.UTC(1971, 0, 27), 1.84],
+                                        [Date.UTC(1971, 1, 10), 1.80],
+                                        [Date.UTC(1971, 1, 18), 1.80],
+                                        [Date.UTC(1971, 1, 24), 1.92],
+                                        [Date.UTC(1971, 2, 4), 2.49],
+                                        [Date.UTC(1971, 2, 11), 2.79],
+                                        [Date.UTC(1971, 2, 15), 2.73],
+                                        [Date.UTC(1971, 2, 25), 2.61],
+                                        [Date.UTC(1971, 3, 2), 2.76],
+                                        [Date.UTC(1971, 3, 6), 2.82],
+                                        [Date.UTC(1971, 3, 13), 2.8],
+                                        [Date.UTC(1971, 4, 3), 2.1],
+                                        [Date.UTC(1971, 4, 26), 1.1],
+                                        [Date.UTC(1971, 5, 9), 0.25],
+                                        [Date.UTC(1971, 5, 12), 0]
+                        ];
+
+                        var chart = new Highcharts.Chart({
+                            chart: {
+                                renderTo: 'container',
+                                type: 'line'
+                            },
+                            title: {
+                                text: 'Temperatures',
+                                x: -20
+                            },
+                            xAxis: {
+                                type: 'datetime'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Fahrenheit'
+                                }
+                            },
+                            tooltip: {
+                                formatter: function() {
+                                    return this.y +'°F';
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            series: [{
+                                data: items
+                            }]
+                        });
+                    });
             });
 
             function find() {
@@ -37,10 +113,20 @@
                     });
             }
         </script>
-
+    <style>
+        .latest {
+            font-size: 20px;
+            font-weight:bold
+        }
+    </style>
 </head>
 <body id="body" >
     <div class="main-content">
+        <div>
+            <h1>Latest Temperature</h1>
+            <span id="latest" class="latest"></span>
+        </div>
+        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
         <div>
             <h1>All Measurements</h1>
             <ul id="products"/>
