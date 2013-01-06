@@ -31,14 +31,10 @@
                     function (data) {
                         var items = [];
                         
-                        //[Date.UTC(1970, 9, 27), 0],
                         $.each(data, function (key, val) {
                             var d = new Date(val.MeasurementDateTimeUtc);
                             items.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
                         });
-
-                        // reverse the data so 
-                        items = items.reverse();
                                                 
                         var chart = new Highcharts.Chart({
                             chart: {
