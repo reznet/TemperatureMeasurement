@@ -42,11 +42,13 @@
                                 type: 'line'
                             },
                             title: {
-                                text: 'Last 24 Hours',
-                                x: -20
+                                text: 'Last 24 Hours'
                             },
                             xAxis: {
-                                type: 'datetime'
+                                type: 'datetime',
+                                dateTimeLabelFormats: {
+                                    hour: '%I:%M %p'
+                                }
                             },
                             yAxis: {
                                 title: {
@@ -55,7 +57,7 @@
                             },
                             tooltip: {
                                 formatter: function() {
-                                    return this.x + '<br/>' + this.y +'°F';
+                                    return Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y +'°F';
                                 }
                             },
                             legend: {
