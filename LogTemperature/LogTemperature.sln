@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogTemperature", "LogTemper
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayTemperatureWebApp", "DisplayTemperatureWebApp\DisplayTemperatureWebApp.csproj", "{8B845AAF-3E62-48F9-AA87-23802AD30A46}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Measurements", "Measurements\Measurements.sqlproj", "{C499651F-7727-4668-A065-C50A2000D0A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,12 @@ Global
 		{8B845AAF-3E62-48F9-AA87-23802AD30A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B845AAF-3E62-48F9-AA87-23802AD30A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B845AAF-3E62-48F9-AA87-23802AD30A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C499651F-7727-4668-A065-C50A2000D0A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
