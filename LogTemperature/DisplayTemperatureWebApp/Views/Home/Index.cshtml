@@ -9,7 +9,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 // Send an AJAX request
-                $.getJSON("api/latesttemperature/",
+                $.getJSON("api/temperature/latest",
                 function (data) {
                     // On success, 'data' contains a list of products.
                     $.each(data, function (key, val) {
@@ -37,43 +37,16 @@
                             items.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
                         });
 
+                        // reverse the data so 
                         items = items.reverse();
-
-                        var good = [ 
-                                        [Date.UTC(1970, 9, 27), 0],
-                                        [Date.UTC(1970, 10, 10), 0.6],
-                                        [Date.UTC(1970, 10, 18), 0.7],
-                                        [Date.UTC(1970, 11, 2), 0.8],
-                                        [Date.UTC(1970, 11, 9), 0.6],
-                                        [Date.UTC(1970, 11, 16), 0.6],
-                                        [Date.UTC(1970, 11, 28), 0.67],
-                                        [Date.UTC(1971, 0, 1), 0.81],
-                                        [Date.UTC(1971, 0, 8), 0.78],
-                                        [Date.UTC(1971, 0, 12), 0.98],
-                                        [Date.UTC(1971, 0, 27), 1.84],
-                                        [Date.UTC(1971, 1, 10), 1.80],
-                                        [Date.UTC(1971, 1, 18), 1.80],
-                                        [Date.UTC(1971, 1, 24), 1.92],
-                                        [Date.UTC(1971, 2, 4), 2.49],
-                                        [Date.UTC(1971, 2, 11), 2.79],
-                                        [Date.UTC(1971, 2, 15), 2.73],
-                                        [Date.UTC(1971, 2, 25), 2.61],
-                                        [Date.UTC(1971, 3, 2), 2.76],
-                                        [Date.UTC(1971, 3, 6), 2.82],
-                                        [Date.UTC(1971, 3, 13), 2.8],
-                                        [Date.UTC(1971, 4, 3), 2.1],
-                                        [Date.UTC(1971, 4, 26), 1.1],
-                                        [Date.UTC(1971, 5, 9), 0.25],
-                                        [Date.UTC(1971, 5, 12), 0]
-                        ];
-
+                                                
                         var chart = new Highcharts.Chart({
                             chart: {
                                 renderTo: 'container',
                                 type: 'line'
                             },
                             title: {
-                                text: 'Temperatures',
+                                text: 'Last 24 Hours',
                                 x: -20
                             },
                             xAxis: {
@@ -86,7 +59,7 @@
                             },
                             tooltip: {
                                 formatter: function() {
-                                    return this.y +'°F';
+                                    return this.x + '<br/>' + this.y +'°F';
                                 }
                             },
                             legend: {
@@ -98,23 +71,10 @@
                         });
                     });
             });
-
-            function find() {
-                var id = $('#prodId').val();
-                $.getJSON("api/products/" + id,
-                    function (data) {
-                        var str = data.Name + ': $' + data.Price;
-                        $('#product').text(str);
-                    })
-                .fail(
-                    function (jqXHR, textStatus, err) {
-                        $('#product').text('Error: ' + err);
-                    });
-            }
         </script>
     <style>
         .latest {
-            font-size: 20px;
+            font-size: xx-large;
             font-weight:bold
         }
     </style>
@@ -126,16 +86,6 @@
             <span id="latest" class="latest"></span>
         </div>
         <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-        <div>
-            <h1>All Measurements</h1>
-            <ul id="products"/>
-        </div>
-        <div>
-            <label for="prodId">ID:</label>
-            <input type="text" id="prodId" size="5"/>
-            <input type="button" value="Search" onclick="find();" />
-            <p id="product" />
-        </div>
     </div>
 </body>
 </html>

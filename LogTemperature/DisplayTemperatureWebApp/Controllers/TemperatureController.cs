@@ -13,9 +13,21 @@ namespace DisplayTemperatureWebApp.Controllers
 {
     public class TemperatureController : ApiController
     {
+        private readonly TemperatureRepository m_temperatureRepository;
+
+        public TemperatureController()
+        {
+            m_temperatureRepository = new TemperatureRepository();
+        }
+
         public IEnumerable<TemperatureMeasurement> GetAll()
         {
-            return (new TemperatureRepository()).GetAll();
+            return m_temperatureRepository.GetAll();
+        }
+
+        public TemperatureMeasurement GetLatest()
+        {
+            return m_temperatureRepository.GetAll().FirstOrDefault();
         }
     }
 }
