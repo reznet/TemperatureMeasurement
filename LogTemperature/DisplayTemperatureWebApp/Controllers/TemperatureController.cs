@@ -48,11 +48,11 @@ namespace DisplayTemperatureWebApp.Controllers
 
             double delta = lastMeasurement.TemperatureFahrenheit - nextToLastMeasurement.TemperatureFahrenheit;
 
-            if (delta > 1.0)
+            if (delta > double.Epsilon)
             {
                 return TemperatureTrend.Increasing;
             }
-            else if (delta < -1.0)
+            else if (delta < -double.Epsilon)
             {
                 return TemperatureTrend.Decreasing;
             }
