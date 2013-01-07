@@ -16,6 +16,12 @@ namespace DisplayTemperatureWebApp
                 );
 
             config.Routes.MapHttpRoute(
+                name: "TemperatureTrend",
+                routeTemplate: "api/Temperature/Trend",
+                defaults: new { controller = "Temperature", action = "GetTrend" }
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "AllTemperatures",
                 routeTemplate: "api/Temperature",
                 defaults: new { controller = "Temperature", action = "GetAll" }

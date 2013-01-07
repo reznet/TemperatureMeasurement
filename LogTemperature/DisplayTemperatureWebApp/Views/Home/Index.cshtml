@@ -27,6 +27,23 @@
                     });
                 });
 
+                $.getJSON("api/temperature/trend",
+                    function (data) {
+                        var trend = '↑';
+                        switch (data) {
+                            case 0:
+                                trend = '↑';
+                                break;
+                            case 1:
+                                trend = '↓';
+                                break;
+                            case 2:
+                                trend = '↔';
+                                break;
+                        }
+                        $('#trend').text(trend);
+                    });
+
                 $.getJSON("api/temperature/",
                     function (data) {
                         var items = [];
@@ -80,7 +97,7 @@
 <body id="body" >
     <div class="main-content">
         <div class="latest">
-            Currently:&nbsp;<span id="latest"></span>°F
+            Currently:&nbsp;<span id="latest"></span>°F&nbsp;<span id="trend"></span>
         </div>
         <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     </div>
