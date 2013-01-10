@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Args">
+      <HintPath>..\packages\Args.1.1.0\lib\Net40\Args.dll</HintPath>
+    </Reference>
     <Reference Include="GoIOdotNET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\GoIO_SDK\GoIOdotNET.dll</HintPath>
@@ -51,11 +54,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -17,6 +17,14 @@ namespace LogTemperature
 
         static int Main(string[] args)
         {
+            var options = Args.Configuration.Configure<ConsoleOptions>().CreateAndBind(args);
+
+            if (string.IsNullOrWhiteSpace(options.SourceName))
+            {
+                Console.WriteLine("SourceName must be provided");
+                return 1;
+            }
+
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
 
             GoIO.Init();
@@ -74,6 +82,7 @@ namespace LogTemperature
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.CommandText = "dbo.LogTemperatureMeasurement";
                         command.Parameters.AddWithValue("@TemperatureCelcius", data);
+                        command.Parameters.AddWithValue("@SourceName", options.SourceName);
                         command.ExecuteNonQuery();
                     }
                 }
