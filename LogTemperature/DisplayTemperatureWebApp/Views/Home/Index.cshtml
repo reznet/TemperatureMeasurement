@@ -46,17 +46,32 @@
 
                 $.getJSON("api/temperature/",
                     function (data) {
-                        var items = [];
+                        var series = {};
                         
                         $.each(data, function (key, val) {
+                            var source = val.Source;
+                            var items;
+                            if (!series[source]) {
+                                series[source] = {
+                                    name: source,
+                                    data: []
+                                };
+                            }
+                            items = series[source];
                             var d = new Date(val.MeasurementDateTimeUtc);
-                            items.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
+                            items.data.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
                         });
+
+                        var data = [];
+                        for (var s in series) {
+                            data.push(series[s]);
+                        }
                                                 
                         var chart = new Highcharts.Chart({
                             chart: {
                                 renderTo: 'container',
-                                type: 'line'
+                                type: 'spline',
+                                zoomType: 'x'
                             },
                             title: {
                                 text: 'Last 24 Hours'
@@ -65,7 +80,8 @@
                                 type: 'datetime',
                                 dateTimeLabelFormats: {
                                     hour: '%I:%M %p'
-                                }
+                                },
+                                maxZoom: 24 * 3600000 // 1 day
                             },
                             yAxis: {
                                 title: {
@@ -74,15 +90,26 @@
                             },
                             tooltip: {
                                 formatter: function() {
-                                    return Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y +'°F';
+                                    return this.series.name + '<br/>' +  Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y +'°F';
+                                }
+                            },
+                            plotOptions: {
+                                spline: {
+                                    lineWidth: 4,
+                                    states: {
+                                        hover: {
+                                            lineWidth: 5
+                                        }
+                                    },
+                                    marker: {
+                                        enabled: false
+                                    }
                                 }
                             },
                             legend: {
-                                enabled: false
+                                enabled: true
                             },
-                            series: [{
-                                data: items
-                            }]
+                            series: data
                         });
                     });
             });
