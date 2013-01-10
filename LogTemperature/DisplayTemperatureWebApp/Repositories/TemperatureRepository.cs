@@ -30,7 +30,8 @@ namespace DisplayTemperatureWebApp.Repositories
                         TemperatureCelcius = Convert.ToDouble(reader["TemperatureCelcius"]),
                         TemperatureFahrenheit = Convert.ToDouble(reader["TemperatureFahrenheit"]),
                         MeasurementTimestamp = DateTimeOffset.Parse(Convert.ToString(reader["MeasurementTimestamp"])),
-                        MeasurementDateTimeUtc = DateTimeOffset.Parse(Convert.ToString(reader["MeasurementTimestamp"])).UtcDateTime
+                        MeasurementDateTimeUtc = DateTimeOffset.Parse(Convert.ToString(reader["MeasurementTimestamp"])).UtcDateTime,
+                        Source = Convert.ToString(reader["SourceName"])
                     };
                 }
             }

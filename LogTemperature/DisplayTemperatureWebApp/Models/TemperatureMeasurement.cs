@@ -16,5 +16,7 @@ namespace DisplayTemperatureWebApp.Models
         public DateTimeOffset MeasurementTimestamp { get; set; }
 
         public DateTime MeasurementDateTimeUtc { get; set; }
+
+        public string Source { get; set; }
     }
 }
