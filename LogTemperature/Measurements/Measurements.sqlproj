@@ -70,5 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Measurements.publish.xml" />
+    <None Include="CompareProductionToProject.scmp" />
   </ItemGroup>
 </Project>
