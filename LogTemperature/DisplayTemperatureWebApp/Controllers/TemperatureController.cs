@@ -29,37 +29,5 @@ namespace DisplayTemperatureWebApp.Controllers
         {
             return m_temperatureRepository.GetLatestTemperatureInfos();
         }
-
-        public TemperatureTrend GetTrend()
-        {
-            TemperatureMeasurement nextToLastMeasurement = null;
-            TemperatureMeasurement lastMeasurement = null;
-
-            foreach (var measurement in m_temperatureRepository.GetAll())
-            {
-                nextToLastMeasurement = lastMeasurement;
-                lastMeasurement = measurement;
-            }
-
-            if (lastMeasurement == null || nextToLastMeasurement == null)
-            {
-                return TemperatureTrend.Steady;
-            }
-
-            double delta = lastMeasurement.TemperatureFahrenheit - nextToLastMeasurement.TemperatureFahrenheit;
-
-            if (delta > double.Epsilon)
-            {
-                return TemperatureTrend.Increasing;
-            }
-            else if (delta < -double.Epsilon)
-            {
-                return TemperatureTrend.Decreasing;
-            }
-            else
-            {
-                return TemperatureTrend.Steady;
-            }
-        }
     }
 }
