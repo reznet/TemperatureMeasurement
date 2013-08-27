@@ -39,11 +39,14 @@ namespace DisplayTemperatureWebApp.Repositories
 
         public IEnumerable<LatestTemperatureInfo> GetLatestTemperatureInfos()
         {
-            return new LatestTemperatureInfo[]
-            {
-                new LatestTemperatureInfo(){SourceName="Jeff", TemperatureFahrenheit=100},
-                new LatestTemperatureInfo(){SourceName="John", TemperatureFahrenheit=55}
-            };
+            var all = GetAll();
+
+            var sources = from measurement in all
+                          group measurement by measurement.Source into groups
+                          select new { SourceName = groups.Key, Measurements = groups };
+
+            return from source in sources
+                   select new LatestTemperatureInfo { SourceName = source.SourceName, TemperatureFahrenheit = source.Measurements.Last().TemperatureFahrenheit };
         }
     }
 }
