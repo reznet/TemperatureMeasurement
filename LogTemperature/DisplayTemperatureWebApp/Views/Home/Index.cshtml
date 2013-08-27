@@ -39,23 +39,6 @@
                     });
                 });
 
-                $.getJSON("api/temperature/trend",
-                    function (data) {
-                        var trend = '↑';
-                        switch (data) {
-                            case 0:
-                                trend = '↑';
-                                break;
-                            case 1:
-                                trend = '↓';
-                                break;
-                            case 2:
-                                trend = '↔';
-                                break;
-                        }
-                        $('#trend').text(trend);
-                    });
-
                 $.getJSON("api/temperature/",
                     function (data) {
                         var series = {};
