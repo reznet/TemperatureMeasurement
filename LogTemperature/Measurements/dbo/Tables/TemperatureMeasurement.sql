@@ -8,3 +8,10 @@
 
 
 
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IDX_TemperatureMeasurement_SourceName]
+    ON [dbo].[TemperatureMeasurement]([SourceName] ASC);
+
