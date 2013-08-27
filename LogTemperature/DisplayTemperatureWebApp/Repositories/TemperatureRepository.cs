@@ -36,5 +36,14 @@ namespace DisplayTemperatureWebApp.Repositories
                 }
             }
         }
+
+        public IEnumerable<LatestTemperatureInfo> GetLatestTemperatureInfos()
+        {
+            return new LatestTemperatureInfo[]
+            {
+                new LatestTemperatureInfo(){SourceName="Jeff", TemperatureFahrenheit=100},
+                new LatestTemperatureInfo(){SourceName="John", TemperatureFahrenheit=55}
+            };
+        }
     }
 }
