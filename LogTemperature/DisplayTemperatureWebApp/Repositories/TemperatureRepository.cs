@@ -36,5 +36,43 @@ namespace DisplayTemperatureWebApp.Repositories
                 }
             }
         }
+
+        public IEnumerable<LatestTemperatureInfo> GetLatestTemperatureInfos()
+        {
+            var all = GetAll();
+
+            var sources = from measurement in all
+                          group measurement by measurement.Source into groups
+                          select new { SourceName = groups.Key, Measurements = groups };
+
+            return from source in sources
+                   let count = source.Measurements.Count()
+                   let last = source.Measurements.Last()
+                   let nextToLast = source.Measurements.Skip(count - 2).First()
+                   select new LatestTemperatureInfo 
+                   { 
+                       SourceName = source.SourceName, 
+                       TemperatureFahrenheit = source.Measurements.Last().TemperatureFahrenheit,
+                       Trend = GetTrend(last.TemperatureFahrenheit, nextToLast.TemperatureFahrenheit)
+                   };
+        }
+
+        private static TemperatureTrend GetTrend(double lastTemperature, double nextToLastTemperature)
+        {
+            double delta = lastTemperature - nextToLastTemperature;
+
+            if (delta > double.Epsilon)
+            {
+                return TemperatureTrend.Increasing;
+            }
+            else if (delta < -double.Epsilon)
+            {
+                return TemperatureTrend.Decreasing;
+            }
+            else
+            {
+                return TemperatureTrend.Steady;
+            }
+        }
     }
 }
