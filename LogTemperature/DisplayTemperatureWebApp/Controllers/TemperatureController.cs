@@ -25,9 +25,9 @@ namespace DisplayTemperatureWebApp.Controllers
             return m_temperatureRepository.GetAll();
         }
 
-        public TemperatureMeasurement GetLatest()
+        public IEnumerable<LatestTemperatureInfo> GetLatest()
         {
-            return m_temperatureRepository.GetAll().LastOrDefault();
+            return m_temperatureRepository.GetLatestTemperatureInfos();
         }
 
         public TemperatureTrend GetTrend()
