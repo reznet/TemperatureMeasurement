@@ -10,5 +10,7 @@ namespace DisplayTemperatureWebApp.Models
         public string SourceName { get; set; }
 
         public double TemperatureFahrenheit { get; set; }
+
+        public TemperatureTrend Trend { get; set; }
     }
 }

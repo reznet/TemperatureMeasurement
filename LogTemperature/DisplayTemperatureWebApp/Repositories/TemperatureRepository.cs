@@ -46,7 +46,12 @@ namespace DisplayTemperatureWebApp.Repositories
                           select new { SourceName = groups.Key, Measurements = groups };
 
             return from source in sources
-                   select new LatestTemperatureInfo { SourceName = source.SourceName, TemperatureFahrenheit = source.Measurements.Last().TemperatureFahrenheit };
+                   select new LatestTemperatureInfo 
+                   { 
+                       SourceName = source.SourceName, 
+                       TemperatureFahrenheit = source.Measurements.Last().TemperatureFahrenheit,
+                       Trend = TemperatureTrend.Steady
+                   };
         }
     }
 }
