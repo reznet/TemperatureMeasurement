@@ -32,8 +32,9 @@
                     $.each(data, function (key, val) {
                         var sourceName = val.SourceName;
                         var temperature = val.TemperatureFahrenheit + "°F";
+                        var trend = getCharForTrend(val.Trend);
 
-                        $('<li/>', { text: sourceName + ": " + temperature })
+                        $('<li/>', { text: sourceName + ": " + temperature + " " + trend })
                         .appendTo($('#latest_temperatures'));
                     });
                 });
