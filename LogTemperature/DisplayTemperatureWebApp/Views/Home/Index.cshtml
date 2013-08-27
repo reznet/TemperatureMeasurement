@@ -28,7 +28,7 @@
                 // Send an AJAX request
                 $.getJSON("api/temperature/latest",
                 function (data) {
-                    // On success, 'data' contains a list of products.
+                    // On success, 'data' contains a list of LatestTemperatureInfos
                     $.each(data, function (key, val) {
                         var sourceName = val.SourceName;
                         var temperature = val.TemperatureFahrenheit + "°F";
