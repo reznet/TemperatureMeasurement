@@ -3,7 +3,7 @@
   <Version>10</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=tv\sqlexpress;Initial Catalog=Measurements;Persist Security Info=True;User ID=sa;Pooling=False</ConnectionString>
+      <ConnectionString>Data Source=tv\sqlexpress;Initial Catalog=Measurements;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</ConnectionString>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>
@@ -303,6 +303,10 @@
       <PropertyElementName>
         <Name>VerifyDeployment</Name>
         <Value>True</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>RunDeploymentPlanExecutors</Name>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>AllowDropBlockingAssemblies</Name>
