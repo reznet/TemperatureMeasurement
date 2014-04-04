@@ -17,13 +17,17 @@ namespace LogHumidity
             try
             {
                 value = sensor.Read();
-                Console.WriteLine(value);
             }
             catch(TimeoutException timeoutException)
             {
                 Console.Error.WriteLine(timeoutException);
                 Environment.ExitCode = 1;
+                return;
             }
+
+            var sink = new MeasurementSink(new Uri("http://localhost:6390/"), "Computer");
+
+            sink.RecordMeasurement(value).Wait();
         }
     }
 }
