@@ -37,6 +37,20 @@
                         $('<li/>', { text: sourceName + ": " + temperature + " " + trend })
                         .appendTo($('#latest_temperatures'));
                     });
+
+                    // Send an AJAX request
+                    $.getJSON("api/humidity/latest",
+                    function (data) {
+                        // On success, 'data' contains a list of LatestTemperatureInfos
+                        $.each(data, function (key, val) {
+                            var sourceName = val.SourceName + " (Humidity)";
+                            var humidity = val.HumidityPercentage + "%";
+                            var trend = getCharForTrend(val.Trend);
+
+                            $('<li/>', { text: sourceName + ": " + humidity + " " + trend })
+                            .appendTo($('#latest_temperatures'));
+                        });
+                    });
                 });
 
                 $.getJSON("api/temperature/",

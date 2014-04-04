@@ -19,9 +19,14 @@ namespace DisplayTemperatureWebApp.Controllers
         }
 
         // GET api/humidity
-        public IEnumerable<HumidityMeasurement> Get()
+        public IEnumerable<HumidityMeasurement> GetAll()
         {
             return m_measurementRepository.GetAllHumidity();
+        }
+
+        public IEnumerable<LatestHumidityInfo> GetLatest()
+        {
+            return m_measurementRepository.GetLatestHumidityInfos();
         }
 
         // POST api/humidity

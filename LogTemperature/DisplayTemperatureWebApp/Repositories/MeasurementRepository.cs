@@ -104,21 +104,42 @@ namespace DisplayTemperatureWebApp.Repositories
             }
         }
 
-        private static TemperatureTrend GetTemperatureTrend(double lastTemperature, double nextToLastTemperature)
+
+        public IEnumerable<LatestHumidityInfo> GetLatestHumidityInfos()
+        {
+            var all = GetAllHumidity();
+
+            var sources = from measurement in all
+                          group measurement by measurement.Source into groups
+                          select new { SourceName = groups.Key, Measurements = groups };
+
+            return from source in sources
+                   let count = source.Measurements.Count()
+                   let last = source.Measurements.Last()
+                   let nextToLast = source.Measurements.Skip(count - 2).First()
+                   select new LatestHumidityInfo
+                   {
+                       SourceName = source.SourceName,
+                       HumidityPercentage = source.Measurements.Last().HumidityPercentage,
+                       Trend = GetTemperatureTrend(last.HumidityPercentage, nextToLast.HumidityPercentage)
+                   };
+        }
+
+        private static MeasurementTrend GetTemperatureTrend(double lastTemperature, double nextToLastTemperature)
         {
             double delta = lastTemperature - nextToLastTemperature;
 
             if (delta > double.Epsilon)
             {
-                return TemperatureTrend.Increasing;
+                return MeasurementTrend.Increasing;
             }
             else if (delta < -double.Epsilon)
             {
-                return TemperatureTrend.Decreasing;
+                return MeasurementTrend.Decreasing;
             }
             else
             {
-                return TemperatureTrend.Steady;
+                return MeasurementTrend.Steady;
             }
         }
     }

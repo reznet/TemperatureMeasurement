@@ -16,6 +16,12 @@ namespace DisplayTemperatureWebApp
                 );
 
             config.Routes.MapHttpRoute(
+                name: "LatestHumidity",
+                routeTemplate: "api/Humidity/Latest",
+                defaults: new { controller = "Humidity", action = "GetLatest" }
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "TemperatureTrend",
                 routeTemplate: "api/Temperature/Trend",
                 defaults: new { controller = "Temperature", action = "GetTrend" }
@@ -25,6 +31,12 @@ namespace DisplayTemperatureWebApp
                 name: "AllTemperatures",
                 routeTemplate: "api/Temperature",
                 defaults: new { controller = "Temperature", action = "GetAll" }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "AllHumidity",
+                routeTemplate: "api/Humidity",
+                defaults: new { controller = "Humidity", action = "GetAll" }
                 );
 
             config.Routes.MapHttpRoute(
