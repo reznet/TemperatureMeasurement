@@ -6,22 +6,22 @@ using System.Web;
 namespace DisplayTemperatureWebApp.Models
 {
     /// <summary>
-    /// Indicates whether the temperature is increasing or decreasing.
+    /// Indicates whether the measurement is increasing or decreasing.
     /// </summary>
-    public enum TemperatureTrend
+    public enum MeasurementTrend
     {
         /// <summary>
-        /// Indicates the temperature is increasing.
+        /// Indicates the measurement is increasing.
         /// </summary>
         Increasing,
 
         /// <summary>
-        /// Indicates the temperature is decreasing.
+        /// Indicates the measurement is decreasing.
         /// </summary>
         Decreasing,
 
         /// <summary>
-        /// Indicates the temperature is holding steady.
+        /// Indicates the measurement is holding steady.
         /// </summary>
         Steady
     }
