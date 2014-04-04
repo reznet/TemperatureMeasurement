@@ -22,7 +22,7 @@ namespace DisplayTemperatureWebApp.Controllers
 
         public IEnumerable<TemperatureMeasurement> GetAll()
         {
-            return m_temperatureRepository.GetAll();
+            return m_temperatureRepository.GetAllTemperatures();
         }
 
         public IEnumerable<LatestTemperatureInfo> GetLatest()

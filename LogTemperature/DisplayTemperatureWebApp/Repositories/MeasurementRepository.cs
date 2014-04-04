@@ -10,7 +10,7 @@ namespace DisplayTemperatureWebApp.Repositories
 {
     public class MeasurementRepository
     {
-        public IEnumerable<TemperatureMeasurement> GetAll()
+        public IEnumerable<TemperatureMeasurement> GetAllTemperatures()
         {
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -39,7 +39,7 @@ namespace DisplayTemperatureWebApp.Repositories
 
         public IEnumerable<LatestTemperatureInfo> GetLatestTemperatureInfos()
         {
-            var all = GetAll();
+            var all = GetAllTemperatures();
 
             var sources = from measurement in all
                           group measurement by measurement.Source into groups
@@ -53,11 +53,11 @@ namespace DisplayTemperatureWebApp.Repositories
                    { 
                        SourceName = source.SourceName, 
                        TemperatureFahrenheit = source.Measurements.Last().TemperatureFahrenheit,
-                       Trend = GetTrend(last.TemperatureFahrenheit, nextToLast.TemperatureFahrenheit)
+                       Trend = GetTemperatureTrend(last.TemperatureFahrenheit, nextToLast.TemperatureFahrenheit)
                    };
         }
 
-        private static TemperatureTrend GetTrend(double lastTemperature, double nextToLastTemperature)
+        private static TemperatureTrend GetTemperatureTrend(double lastTemperature, double nextToLastTemperature)
         {
             double delta = lastTemperature - nextToLastTemperature;
 
