@@ -67,9 +67,13 @@
     <Build Include="dbo\Tables\TemperatureMeasurement.sql" />
     <Build Include="dbo\Stored Procedures\GetTemperatureMeasurements.sql" />
     <Build Include="dbo\Stored Procedures\LogTemperatureMeasurement.sql" />
+    <Build Include="dbo\Tables\HumidityMeasurement.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Measurements.publish.xml" />
     <None Include="CompareProductionToProject.scmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Measurements.refactorlog" />
   </ItemGroup>
 </Project>
