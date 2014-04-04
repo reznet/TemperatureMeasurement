@@ -78,11 +78,10 @@
                                 },
                                 maxZoom: 24 * 3600000 // 1 day
                             },
-                            yAxis: {
-                                title: {
-                                    text: 'Fahrenheit'
-                                }
-                            },
+                            yAxis: [
+                                {title: {text: 'Fahrenheit' } },
+                                {title: {text: '%'}, opposite: true },
+                            ],
                             tooltip: {
                                 formatter: function() {
                                     return this.series.name + '<br/>' +  Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y +'°F';
@@ -106,75 +105,31 @@
                             },
                             series: data
                         });
-                    });
 
-                $.getJSON("api/humidity/",
-                    function (data) {
-                        var series = {};
+                        $.getJSON("api/humidity/",
+                            function (data) {
+                                var humiditySeries = {};
 
-                        $.each(data, function (key, val) {
-                            var source = val.Source;
-                            var items;
-                            if (!series[source]) {
-                                series[source] = {
-                                    name: source,
-                                    data: []
-                                };
-                            }
-                            items = series[source];
-                            var d = new Date(val.MeasurementDateTimeUtc);
-                            items.data.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.HumidityPercentage]);
-                        });
-
-                        var data = [];
-                        for (var s in series) {
-                            data.push(series[s]);
-                        }
-
-                        var chart = new Highcharts.Chart({
-                            chart: {
-                                renderTo: 'humidity_container',
-                                type: 'spline',
-                                zoomType: 'x'
-                            },
-                            title: {
-                                text: 'Last 24 Hours'
-                            },
-                            xAxis: {
-                                type: 'datetime',
-                                dateTimeLabelFormats: {
-                                    hour: '%I:%M %p'
-                                },
-                                maxZoom: 24 * 3600000 // 1 day
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Humidity %'
-                                }
-                            },
-                            tooltip: {
-                                formatter: function () {
-                                    return this.series.name + '<br/>' + Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y + '%';
-                                }
-                            },
-                            plotOptions: {
-                                spline: {
-                                    lineWidth: 4,
-                                    states: {
-                                        hover: {
-                                            lineWidth: 5
-                                        }
-                                    },
-                                    marker: {
-                                        enabled: false
+                                $.each(data, function (key, val) {
+                                    var source = val.Source + " (Humidity)";
+                                    var items;
+                                    if (!humiditySeries[source]) {
+                                        humiditySeries[source] = {
+                                            name: source,
+                                            data: [],
+                                            yAxis: 1,
+                                        };
                                     }
+                                    items = humiditySeries[source];
+                                    var d = new Date(val.MeasurementDateTimeUtc);
+                                    items.data.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.HumidityPercentage]);
+                                });
+
+                                var humidityData = [];
+                                for (var s in humiditySeries) {
+                                    chart.addSeries(humiditySeries[s]);
                                 }
-                            },
-                            legend: {
-                                enabled: true
-                            },
-                            series: data
-                        });
+                            });
                     });
             });
         </script>
