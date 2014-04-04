@@ -13,11 +13,11 @@ namespace DisplayTemperatureWebApp.Controllers
 {
     public class TemperatureController : ApiController
     {
-        private readonly TemperatureRepository m_temperatureRepository;
+        private readonly MeasurementRepository m_temperatureRepository;
 
         public TemperatureController()
         {
-            m_temperatureRepository = new TemperatureRepository();
+            m_temperatureRepository = new MeasurementRepository();
         }
 
         public IEnumerable<TemperatureMeasurement> GetAll()

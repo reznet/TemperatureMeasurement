@@ -8,7 +8,7 @@ using System.Web;
 
 namespace DisplayTemperatureWebApp.Repositories
 {
-    public class TemperatureRepository
+    public class MeasurementRepository
     {
         public IEnumerable<TemperatureMeasurement> GetAll()
         {
