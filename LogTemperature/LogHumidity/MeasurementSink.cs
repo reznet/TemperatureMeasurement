@@ -24,7 +24,7 @@ namespace LogHumidity
             using(HttpClient httpClient = new HttpClient())
             {
                 var measurement = new { HumidityPercentage = humidityPercentage, Source = _sourceName };
-                var response = await httpClient.PostAsJsonAsync(_baseUri + "api/humidity", measurement);
+                var response = await httpClient.PostAsJsonAsync(_baseUri + "api/humidity/new", measurement);
 
                 response.EnsureSuccessStatusCode();
             }

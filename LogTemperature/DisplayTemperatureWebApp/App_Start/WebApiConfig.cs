@@ -40,6 +40,12 @@ namespace DisplayTemperatureWebApp
                 );
 
             config.Routes.MapHttpRoute(
+                name: "PostHumidity",
+                routeTemplate: "api/Humidity/new",
+                defaults: new { controller = "Humidity", action = "Post" }
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

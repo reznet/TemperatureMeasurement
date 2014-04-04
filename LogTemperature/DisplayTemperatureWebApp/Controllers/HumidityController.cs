@@ -30,6 +30,7 @@ namespace DisplayTemperatureWebApp.Controllers
         }
 
         // POST api/humidity
+        [HttpPost]
         public void Post([FromBody]HumidityMeasurement value)
         {
             m_measurementRepository.AddHumidityMeasurement(value.HumidityPercentage, value.Source);
