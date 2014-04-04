@@ -1,4 +1,5 @@
 ﻿using DisplayTemperatureWebApp.Models;
+using DisplayTemperatureWebApp.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,23 @@ namespace DisplayTemperatureWebApp.Controllers
 {
     public class HumidityController : ApiController
     {
+        private readonly MeasurementRepository m_measurementRepository;
+
+        public HumidityController()
+        {
+            m_measurementRepository = new MeasurementRepository();
+        }
+
         // GET api/humidity
         public IEnumerable<HumidityMeasurement> Get()
         {
-            return new HumidityMeasurement[0];
-        }
-
-        // GET api/humidity/5
-        public HumidityMeasurement Get(int id)
-        {
-            return null;
+            return m_measurementRepository.GetAllHumidity();
         }
 
         // POST api/humidity
         public void Post([FromBody]HumidityMeasurement value)
         {
+            m_measurementRepository.AddHumidityMeasurement(value.HumidityPercentage, value.Source);
         }
     }
 }

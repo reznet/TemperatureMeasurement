@@ -23,8 +23,8 @@ namespace LogHumidity
         {
             using(HttpClient httpClient = new HttpClient())
             {
-                var content = new StringContent(string.Format("{{HumidityPercentage={0},Source={1}}}", humidityPercentage, _sourceName));
-                var response = await httpClient.PostAsync(_baseUri + "api/humidity", content);
+                var measurement = new { HumidityPercentage = humidityPercentage, Source = _sourceName };
+                var response = await httpClient.PostAsJsonAsync(_baseUri + "api/humidity", measurement);
 
                 response.EnsureSuccessStatusCode();
             }

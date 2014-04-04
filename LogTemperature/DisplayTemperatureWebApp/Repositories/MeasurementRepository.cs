@@ -57,6 +57,53 @@ namespace DisplayTemperatureWebApp.Repositories
                    };
         }
 
+        public void AddHumidityMeasurement(double humidityPercentage, string sourceName)
+        {
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.LogHumidityMeasurement";
+
+                command.Parameters.AddWithValue("@HumidityPercentage", humidityPercentage);
+                command.Parameters.AddWithValue("@SourceName", sourceName);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        internal IEnumerable<HumidityMeasurement> GetAllHumidity()
+        {
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetHumidityMeasurements";
+
+                var reader = command.ExecuteReader();
+                List<HumidityMeasurement> result = new List<HumidityMeasurement>();
+
+                while (reader.Read())
+                {
+                    result.Add(new HumidityMeasurement()
+                    {
+                        HumidityMeasurementId = Convert.ToInt32(reader["HumidityMeasurementId"]),
+                        HumidityPercentage = Convert.ToDouble(reader["HumidityPercentage"]),
+                        MeasurementTimestamp = DateTimeOffset.Parse(Convert.ToString(reader["MeasurementTimestamp"])),
+                        MeasurementDateTimeUtc = DateTimeOffset.Parse(Convert.ToString(reader["MeasurementTimestamp"])).UtcDateTime,
+                        Source = Convert.ToString(reader["SourceName"])
+                    });
+                }
+
+                return result;
+            }
+        }
+
         private static TemperatureTrend GetTemperatureTrend(double lastTemperature, double nextToLastTemperature)
         {
             double delta = lastTemperature - nextToLastTemperature;
