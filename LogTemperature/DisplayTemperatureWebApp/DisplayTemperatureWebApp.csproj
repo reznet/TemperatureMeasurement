@@ -123,10 +123,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HumidityController.cs" />
     <Compile Include="Controllers\TemperatureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HumidityMeasurement.cs" />
     <Compile Include="Models\LatestTemperatureInfo.cs" />
     <Compile Include="Models\TemperatureMeasurement.cs" />
     <Compile Include="Models\TemperatureTrend.cs" />
