@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +27,13 @@ namespace LogTemperature
             }
 
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+
+            string logWebsiteUrlValue = ConfigurationManager.AppSettings["LogWebsiteUri"];
+            if (string.IsNullOrWhiteSpace(logWebsiteUrlValue))
+            {
+                Console.Error.WriteLine("LogWebsiteUri must be set in the .config file.");
+                Environment.Exit(1);
+            }
 
             GoIO.Init();
 
@@ -71,25 +79,18 @@ namespace LogTemperature
                 var data = rawMeasurements.Select(m => GoIO.Sensor_ConvertToVoltage(sensorHandle, m)).Select(v => GoIO.Sensor_CalibrateData(sensorHandle, v)).First();
                 Console.WriteLine("Got data {0}", data);
 
-                Console.WriteLine("Attempting to log data to SQL");
-                try
+                Console.WriteLine("Attempting to log data");
+
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    var measurement = new { TemperatureCelcius = data, Source = options.SourceName };
+                    var responseMessage = httpClient.PostAsJsonAsync(logWebsiteUrlValue + "api/temperature/new", measurement).Result;
+
+                    if(!responseMessage.IsSuccessStatusCode)
                     {
-                        connection.Open();
-                        SqlCommand command = new SqlCommand();
-                        command.Connection = connection;
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "dbo.LogTemperatureMeasurement";
-                        command.Parameters.AddWithValue("@TemperatureCelcius", data);
-                        command.Parameters.AddWithValue("@SourceName", options.SourceName);
-                        command.ExecuteNonQuery();
+                        Console.WriteLine("Did not get success from posting to measurement website: " + responseMessage.StatusCode);
+                        return 1;
                     }
-                }
-                catch (SqlException sqlException)
-                {
-                    Console.WriteLine("Error making SQL call: " + sqlException.Message);
-                    return 1;
                 }
             }
 
