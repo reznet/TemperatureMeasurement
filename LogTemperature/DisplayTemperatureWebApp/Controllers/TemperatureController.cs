@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace DisplayTemperatureWebApp.Controllers
 {
+    [Authorize]
     public class TemperatureController : ApiController
     {
         private readonly MeasurementRepository m_temperatureRepository;
@@ -28,6 +29,13 @@ namespace DisplayTemperatureWebApp.Controllers
         public IEnumerable<LatestTemperatureInfo> GetLatest()
         {
             return m_temperatureRepository.GetLatestTemperatureInfos();
+        }
+
+        // POST api/humidity
+        [HttpPost]
+        public void Post([FromBody]TemperatureMeasurement value)
+        {
+            m_temperatureRepository.AddTemperatureMeasurement(value.TemperatureCelcius, value.Source);
         }
     }
 }

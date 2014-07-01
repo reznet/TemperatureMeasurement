@@ -12,7 +12,7 @@ namespace DisplayTemperatureWebApp.Repositories
     {
         public IEnumerable<TemperatureMeasurement> GetAllTemperatures()
         {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand();
@@ -57,9 +57,24 @@ namespace DisplayTemperatureWebApp.Repositories
                    };
         }
 
+        public void AddTemperatureMeasurement(double temperatureCelcius, string sourceName)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "dbo.LogTemperatureMeasurement";
+                command.Parameters.AddWithValue("@TemperatureCelcius", temperatureCelcius);
+                command.Parameters.AddWithValue("@SourceName", sourceName);
+                command.ExecuteNonQuery();
+            }
+        }
+
         public void AddHumidityMeasurement(double humidityPercentage, string sourceName)
         {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand();
@@ -77,7 +92,7 @@ namespace DisplayTemperatureWebApp.Repositories
 
         internal IEnumerable<HumidityMeasurement> GetAllHumidity()
         {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand();
@@ -140,6 +155,14 @@ namespace DisplayTemperatureWebApp.Repositories
             else
             {
                 return MeasurementTrend.Steady;
+            }
+        }
+
+        private string ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             }
         }
     }
