@@ -754,3 +754,10 @@ tr.pager td {
             margin: 0;
         }
 }
+
+
+/* custom styles */
+.latest {
+    font-size: xx-large;
+    font-weight:bold
+}
