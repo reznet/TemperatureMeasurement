@@ -10,8 +10,8 @@
     }), $.getJSON("api/humidity/", function (data) {
         humidities = data;
     })).done(function () {
-        var temperatureData = convertToChartData(temperatures, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
-        var humidityData = convertToChartData(humidities, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
+        var temperatureData = convertToChartData(temperatures, { sourcePropertyName: "Source", utcDatePropertyName: "MeasurementDateTimeUtc", valuePropertyName: "TemperatureFahrenheit" });
+        var humidityData = convertToChartData(humidities, { sourcePropertyName: "Source", utcDatePropertyName: "MeasurementDateTimeUtc", valuePropertyName: "HumidityPercentage", seriesSuffix: " (Humidity)" });
         renderChart('container', temperatureData.concat(humidityData));
     });
 }
@@ -64,11 +64,15 @@ function getCharForTrend(data) {
     return trend;
 }
 
-function convertToChartData(data, sourcePropertyName, utcDatePropertyName, valuePropertyName) {
+function convertToChartData(data, options) {
     var series = {};
+    var sourcePropertyName = options.sourcePropertyName;
+    var utcDatePropertyName = options.utcDatePropertyName;
+    var valuePropertyName = options.valuePropertyName;
+    var seriesSuffix = options.seriesSuffix || "";
 
     $.each(data, function (key, val) {
-        var source = val[sourcePropertyName];
+        var source = val[sourcePropertyName] + seriesSuffix;
         var items;
         if (!series[source]) {
             series[source] = {
@@ -113,7 +117,7 @@ function renderChart(containerId, data){
         ],
         tooltip: {
             formatter: function () {
-                return this.series.name + '<br/>' + Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y + '°F';
+                return this.series.name + '<br/>' + Highcharts.dateFormat("%l:%M %p", this.x, true) + '<br/>' + this.y + (this.series.name.indexOf("Humidity") == -1 ? '°F' : '%');
             }
         },
         plotOptions: {
