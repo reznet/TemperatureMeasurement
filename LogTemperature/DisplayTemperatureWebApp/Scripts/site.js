@@ -44,11 +44,11 @@ function loadLatestTemperatures() {
                 });
 }
 
-function getChartDataFromTemperatures(data){
+function convertToChartData(data, getSource, getDate, getValue) {
     var series = {};
 
     $.each(data, function (key, val) {
-        var source = val.Source;
+        var source = getSource(val);
         var items;
         if (!series[source]) {
             series[source] = {
@@ -57,8 +57,7 @@ function getChartDataFromTemperatures(data){
             };
         }
         items = series[source];
-        var d = new Date(val.MeasurementDateTimeUtc);
-        items.data.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.TemperatureFahrenheit]);
+        items.data.push([getDate(val), getValue(val)]);
     });
 
     var data = [];
@@ -69,30 +68,20 @@ function getChartDataFromTemperatures(data){
     return data;
 }
 
-function getChartDataFromHumidities(data){
-    var series = {};
+function getChartDataFromTemperatures(data) {
+    return convertToChartData(data, 
+        function (val) { return val.Source }, 
+        function (val) { var d = new Date(val.MeasurementDateTimeUtc); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()) },
+        function (val) { return val.TemperatureFahrenheit }
+        );
+}
 
-    $.each(data, function (key, val) {
-        var source = val.Source + " (Humidity)";
-        var items;
-        if (!series[source]) {
-            series[source] = {
-                name: source,
-                data: [],
-                yAxis: 1,
-            };
-        }
-        items = series[source];
-        var d = new Date(val.MeasurementDateTimeUtc);
-        items.data.push([Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()), val.HumidityPercentage]);
-    });
-
-    var data = [];
-    for (var s in series) {
-        data.push(series[s]);
-    }
-
-    return data;
+function getChartDataFromHumidities(data) {
+    return convertToChartData(data,
+        function (val) { return val.Source },
+        function (val) { var d = new Date(val.MeasurementDateTimeUtc); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()) },
+        function (val) { return val.HumidityPercentage }
+        );
 }
 
 function renderChart(containerId, data){
