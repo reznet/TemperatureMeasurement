@@ -1,4 +1,22 @@
-﻿function getCharForTrend(data) {
+﻿function fillTemperatureChart() {
+    // make two async calls to get temperatures and humidities
+    // when each call finishes, store the result in a local variable
+    // when both calls have finished, parse the results and then send them to
+    // the chart rendering function
+    var temperatures = [];
+    var humidities = [];
+    $.when($.getJSON("api/temperature/", function (data) {
+        temperatures = data;
+    }), $.getJSON("api/humidity/", function (data) {
+        humidities = data;
+    })).done(function () {
+        var temperatureData = convertToChartData(temperatures, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
+        var humidityData = convertToChartData(humidities, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
+        renderChart('container', temperatureData.concat(humidityData));
+    });
+}
+
+function getCharForTrend(data) {
     var trend = '?';
     switch (data) {
         case 0:
@@ -113,23 +131,5 @@ function renderChart(containerId, data){
             enabled: true
         },
         series: data
-    });
-}
-
-function fillTemperatureChart() {
-    // make two async calls to get temperatures and humidities
-    // when each call finishes, store the result in a local variable
-    // when both calls have finished, parse the results and then send them to
-    // the chart rendering function
-    var temperatures = [];
-    var humidities = [];
-    $.when($.getJSON("api/temperature/", function (data) {
-        temperatures = data;
-    }), $.getJSON("api/humidity/", function (data) {
-        humidities = data;
-    })).done(function(){
-        var temperatureData = convertToChartData(temperatures, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
-        var humidityData = convertToChartData(humidities, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
-        renderChart('container', temperatureData.concat(humidityData));
     });
 }
