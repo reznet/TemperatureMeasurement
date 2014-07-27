@@ -70,14 +70,6 @@ function convertToChartData(data, sourcePropertyName, utcDatePropertyName, value
     return data;
 }
 
-function getChartDataFromTemperatures(data) {
-    return convertToChartData(data, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
-}
-
-function getChartDataFromHumidities(data) {
-    return convertToChartData(data, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
-}
-
 function renderChart(containerId, data){
     var chart = new Highcharts.Chart({
         chart: {
@@ -136,8 +128,8 @@ function fillTemperatureChart() {
     }), $.getJSON("api/humidity/", function (data) {
         humidities = data;
     })).done(function(){
-        var temperatureData = getChartDataFromTemperatures(temperatures);
-        var humidityData = getChartDataFromHumidities(humidities);
+        var temperatureData = convertToChartData(temperatures, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
+        var humidityData = convertToChartData(humidities, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
         renderChart('container', temperatureData.concat(humidityData));
     });
 }
