@@ -16,23 +16,6 @@
     });
 }
 
-function getCharForTrend(data) {
-    var trend = '?';
-    switch (data) {
-        case 0:
-            trend = '↑';
-            break;
-        case 1:
-            trend = '↓';
-            break;
-        case 2:
-            trend = '↔';
-            break;
-    }
-
-    return trend;
-}
-
 function loadLatestTemperatures() {
     $.getJSON("api/temperature/latest",
                 function (data) {
@@ -60,6 +43,23 @@ function loadLatestTemperatures() {
                         });
                     });
                 });
+}
+
+function getCharForTrend(data) {
+    var trend = '?';
+    switch (data) {
+        case 0:
+            trend = '↑';
+            break;
+        case 1:
+            trend = '↓';
+            break;
+        case 2:
+            trend = '↔';
+            break;
+    }
+
+    return trend;
 }
 
 function convertToChartData(data, sourcePropertyName, utcDatePropertyName, valuePropertyName) {
