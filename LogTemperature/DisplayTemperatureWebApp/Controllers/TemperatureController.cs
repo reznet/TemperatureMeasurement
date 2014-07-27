@@ -11,7 +11,6 @@ using System.Web.Http;
 
 namespace DisplayTemperatureWebApp.Controllers
 {
-    [Authorize]
     public class TemperatureController : ApiController
     {
         private readonly MeasurementRepository m_temperatureRepository;
