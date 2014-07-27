@@ -17,32 +17,34 @@
 }
 
 function loadLatestTemperatures() {
-    $.getJSON("api/temperature/latest",
-                function (data) {
-                    // On success, 'data' contains a list of LatestTemperatureInfos
-                    $.each(data, function (key, val) {
-                        var sourceName = val.SourceName;
-                        var temperature = val.TemperatureFahrenheit + "°F";
-                        var trend = getCharForTrend(val.Trend);
+    var temperatureSources = [];
+    var humiditySources = [];
 
-                        $('<li/>', { text: sourceName + ": " + temperature + " " + trend })
-                        .appendTo($('#latest_temperatures'));
-                    });
+    $.when(
+        $.getJSON("api/temperature/latest", function (data) {
+            $.each(data, function (key, val) {
+                var sourceName = val.SourceName;
+                var temperature = val.TemperatureFahrenheit + "°F";
+                var trend = getCharForTrend(val.Trend);
 
-                    // Send an AJAX request
-                    $.getJSON("api/humidity/latest",
-                    function (data) {
-                        // On success, 'data' contains a list of LatestTemperatureInfos
-                        $.each(data, function (key, val) {
-                            var sourceName = val.SourceName + " (Humidity)";
-                            var humidity = val.HumidityPercentage + "%";
-                            var trend = getCharForTrend(val.Trend);
+                temperatureSources.push(sourceName + ": " + temperature + " " + trend);
+            });
+        }),
+        $.getJSON("api/humidity/latest", function (data) {
+            $.each(data, function (key, val) {
+                var sourceName = val.SourceName + " (Humidity)";
+                var humidity = val.HumidityPercentage + "%";
+                var trend = getCharForTrend(val.Trend);
 
-                            $('<li/>', { text: sourceName + ": " + humidity + " " + trend })
-                            .appendTo($('#latest_temperatures'));
-                        });
-                    });
-                });
+                humiditySources.push(sourceName + ": " + humidity + " " + trend);
+            });
+        }))
+    .done(function () {
+        $.each(temperatureSources.concat(humiditySources), function(key, val){
+            $('<li/>', { text: val })
+                .appendTo($('#latest_temperatures'));
+        });
+    });
 }
 
 function getCharForTrend(data) {
