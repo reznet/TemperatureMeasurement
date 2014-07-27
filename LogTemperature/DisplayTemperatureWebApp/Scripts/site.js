@@ -44,11 +44,11 @@ function loadLatestTemperatures() {
                 });
 }
 
-function convertToChartData(data, getSource, getDate, getValue) {
+function convertToChartData(data, sourcePropertyName, utcDatePropertyName, valuePropertyName) {
     var series = {};
 
     $.each(data, function (key, val) {
-        var source = getSource(val);
+        var source = val[sourcePropertyName];
         var items;
         if (!series[source]) {
             series[source] = {
@@ -57,7 +57,9 @@ function convertToChartData(data, getSource, getDate, getValue) {
             };
         }
         items = series[source];
-        items.data.push([getDate(val), getValue(val)]);
+        var d = new Date(val[utcDatePropertyName]);
+        var utc = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds());
+        items.data.push([utc, val[valuePropertyName]]);
     });
 
     var data = [];
@@ -69,19 +71,11 @@ function convertToChartData(data, getSource, getDate, getValue) {
 }
 
 function getChartDataFromTemperatures(data) {
-    return convertToChartData(data, 
-        function (val) { return val.Source }, 
-        function (val) { var d = new Date(val.MeasurementDateTimeUtc); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()) },
-        function (val) { return val.TemperatureFahrenheit }
-        );
+    return convertToChartData(data, "Source", "MeasurementDateTimeUtc", "TemperatureFahrenheit");
 }
 
 function getChartDataFromHumidities(data) {
-    return convertToChartData(data,
-        function (val) { return val.Source },
-        function (val) { var d = new Date(val.MeasurementDateTimeUtc); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()) },
-        function (val) { return val.HumidityPercentage }
-        );
+    return convertToChartData(data, "Source", "MeasurementDateTimeUtc", "HumidityPercentage");
 }
 
 function renderChart(containerId, data){
