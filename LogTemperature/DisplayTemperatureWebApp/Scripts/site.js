@@ -41,7 +41,7 @@ function loadLatestTemperatures() {
         }))
     .done(function () {
         $.each(temperatureSources.concat(humiditySources), function(key, val){
-            $('<li/>', { text: val })
+            $('<li/>', { "text": val, "class": "list-group-item latest-reading" })
                 .appendTo($('#latest_temperatures'));
         });
     });
