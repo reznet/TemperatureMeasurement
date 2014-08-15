@@ -107,8 +107,12 @@ function renderChart(containerId, data){
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: {
+                millisecond: '%I:%M:%S.%L %p',
+                second: '%I:%M:%S %p',
+                minute: '%I:%M %p',
                 hour: '%I:%M %p'
             },
+            tickPixelInterval: 200,
         },
         yAxis: [
             { title: { text: 'Fahrenheit' } },
