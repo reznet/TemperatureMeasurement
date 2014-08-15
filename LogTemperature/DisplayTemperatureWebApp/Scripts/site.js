@@ -109,7 +109,6 @@ function renderChart(containerId, data){
             dateTimeLabelFormats: {
                 hour: '%I:%M %p'
             },
-            maxZoom: 24 * 3600000 // 1 day
         },
         yAxis: [
             { title: { text: 'Fahrenheit' } },
