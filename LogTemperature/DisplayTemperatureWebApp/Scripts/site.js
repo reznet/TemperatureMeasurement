@@ -116,7 +116,6 @@ function renderChart(containerId, data){
         },
         yAxis: [
             { title: { text: 'Fahrenheit' } },
-            { title: { text: '%' }, opposite: true },
         ],
         tooltip: {
             formatter: function () {
