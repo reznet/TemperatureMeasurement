@@ -64,6 +64,32 @@ if(device != nil){
     }
 
     println("Average temperature: \(averageTemperature)")
+    
+    let url = NSURL(string: "http://temperatures.azurewebsites.net/api/temperature/new")
+    var request = NSMutableURLRequest(URL: url!)
+    request.HTTPMethod = "POST"
+    let body = NSString(format: "{ \"TemperatureCelcius\" : \(averageTemperature), \"Source\" : \"Living Room\" }")
+    println("body: \(body)")
+    request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    var response : NSURLResponse?
+    var error : NSError?
+    
+    let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
+    
+    let responseString = NSString(data: responseData!, encoding: NSUTF8StringEncoding)!
+    
+    println("response: \(responseString)")
+    
+    if let httpResponse  = response! as? NSHTTPURLResponse {
+        println("status code \(httpResponse.statusCode)")
+    }
+    
+//    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
+//            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+//    }
+
 
     GoIO_Sensor_Close(device)
 }
