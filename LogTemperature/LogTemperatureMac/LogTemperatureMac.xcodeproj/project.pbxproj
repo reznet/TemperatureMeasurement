@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FDB51091A4BEC0400068492 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB51081A4BEC0400068492 /* main.cpp */; };
+		1FDB51191A4BEDFE00068492 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDB51181A4BEDFE00068492 /* Carbon.framework */; };
+		1FDB511F1A4BEFA700068492 /* libGoIOUniversal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDB511E1A4BEFA700068492 /* libGoIOUniversal.dylib */; };
+		1FDB51201A4BF02F00068492 /* libGoIOUniversal.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1FDB511E1A4BEFA700068492 /* libGoIOUniversal.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1FDB51031A4BEC0400068492 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				1FDB51201A4BF02F00068492 /* libGoIOUniversal.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1FDB51051A4BEC0400068492 /* LogTemperatureMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LogTemperatureMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FDB51081A4BEC0400068492 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1FDB51101A4BECC900068492 /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoIO_DLL_interface.h; sourceTree = "<group>"; };
+		1FDB51121A4BED6400068492 /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVernierUSB.h; sourceTree = "<group>"; };
+		1FDB51131A4BED6400068492 /* GMiniGCDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMiniGCDDSMem.h; sourceTree = "<group>"; };
+		1FDB51141A4BED6400068492 /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSensorDDSMem.h; sourceTree = "<group>"; };
+		1FDB51151A4BED6400068492 /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSkipCommExt.h; sourceTree = "<group>"; };
+		1FDB51181A4BEDFE00068492 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		1FDB511E1A4BEFA700068492 /* libGoIOUniversal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGoIOUniversal.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FDB51021A4BEC0400068492 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDB511F1A4BEFA700068492 /* libGoIOUniversal.dylib in Frameworks */,
+				1FDB51191A4BEDFE00068492 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDB50FC1A4BEC0400068492 = {
+			isa = PBXGroup;
+			children = (
+				1FDB511E1A4BEFA700068492 /* libGoIOUniversal.dylib */,
+				1FDB51181A4BEDFE00068492 /* Carbon.framework */,
+				1FDB51071A4BEC0400068492 /* LogTemperatureMac */,
+				1FDB51061A4BEC0400068492 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FDB51061A4BEC0400068492 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB51051A4BEC0400068492 /* LogTemperatureMac */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1FDB51071A4BEC0400068492 /* LogTemperatureMac */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB51121A4BED6400068492 /* GVernierUSB.h */,
+				1FDB51131A4BED6400068492 /* GMiniGCDDSMem.h */,
+				1FDB51141A4BED6400068492 /* GSensorDDSMem.h */,
+				1FDB51151A4BED6400068492 /* GSkipCommExt.h */,
+				1FDB51101A4BECC900068492 /* GoIO_DLL_interface.h */,
+				1FDB51081A4BEC0400068492 /* main.cpp */,
+			);
+			path = LogTemperatureMac;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FDB51041A4BEC0400068492 /* LogTemperatureMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FDB510C1A4BEC0400068492 /* Build configuration list for PBXNativeTarget "LogTemperatureMac" */;
+			buildPhases = (
+				1FDB51011A4BEC0400068492 /* Sources */,
+				1FDB51021A4BEC0400068492 /* Frameworks */,
+				1FDB51031A4BEC0400068492 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogTemperatureMac;
+			productName = LogTemperatureMac;
+			productReference = 1FDB51051A4BEC0400068492 /* LogTemperatureMac */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FDB50FD1A4BEC0400068492 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jeff Evans";
+				TargetAttributes = {
+					1FDB51041A4BEC0400068492 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1FDB51001A4BEC0400068492 /* Build configuration list for PBXProject "LogTemperatureMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1FDB50FC1A4BEC0400068492;
+			productRefGroup = 1FDB51061A4BEC0400068492 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FDB51041A4BEC0400068492 /* LogTemperatureMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FDB51011A4BEC0400068492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDB51091A4BEC0400068492 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1FDB510A1A4BEC0400068492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1FDB510B1A4BEC0400068492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1FDB510D1A4BEC0400068492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LogTemperatureMac",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1FDB510E1A4BEC0400068492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LogTemperatureMac",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FDB51001A4BEC0400068492 /* Build configuration list for PBXProject "LogTemperatureMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDB510A1A4BEC0400068492 /* Debug */,
+				1FDB510B1A4BEC0400068492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FDB510C1A4BEC0400068492 /* Build configuration list for PBXNativeTarget "LogTemperatureMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDB510D1A4BEC0400068492 /* Debug */,
+				1FDB510E1A4BEC0400068492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1FDB50FD1A4BEC0400068492 /* Project object */;
+}
