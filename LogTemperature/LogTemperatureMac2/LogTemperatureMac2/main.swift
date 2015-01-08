@@ -8,7 +8,7 @@
 
 import Foundation
 
-println("Hello, World!")
+let temperatureSourceName = "Macbook"
 
 GoIO_Init()
 
@@ -24,14 +24,14 @@ let productId = gtype_int32(USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID)
 
 let numberOfDevices = GoIO_UpdateListOfAvailableDevices(vendorId, productId)
 
-println("There are \(numberOfDevices) devices")
+println("There are \(numberOfDevices) device(s)")
 
 var deviceNameArray : Array<CChar> = Array<CChar>(count: 255, repeatedValue: 0)
 GoIO_GetNthAvailableDeviceName(&deviceNameArray, gtype_int32(255), vendorId, productId, 0)
 
 let deviceName = String.fromCString(deviceNameArray)!
-println("Got device name \(deviceName)")
 
+println("opening sensor device \(deviceName)")
 var device = GoIO_Sensor_Open(deviceName, vendorId, productId, 0)
 
 if(device != nil){
@@ -68,29 +68,23 @@ if(device != nil){
     let url = NSURL(string: "http://temperatures.azurewebsites.net/api/temperature/new")
     var request = NSMutableURLRequest(URL: url!)
     request.HTTPMethod = "POST"
-    let body = NSString(format: "{ \"TemperatureCelcius\" : \(averageTemperature), \"Source\" : \"Living Room\" }")
-    println("body: \(body)")
+    let body = NSString(format: "{ \"TemperatureCelcius\" : \(averageTemperature), \"Source\" : \"\(temperatureSourceName)\" }")
     request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
     var response : NSURLResponse?
     var error : NSError?
     
+    println("sending \(body) to \(url!)")
     let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
     
     let responseString = NSString(data: responseData!, encoding: NSUTF8StringEncoding)!
     
-    println("response: \(responseString)")
-    
     if let httpResponse  = response! as? NSHTTPURLResponse {
-        println("status code \(httpResponse.statusCode)")
+        println("HTTP status code \(httpResponse.statusCode)")
     }
-    
-//    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
-//            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-//    }
 
-
+    println("closing sensor")
     GoIO_Sensor_Close(device)
 }
 
