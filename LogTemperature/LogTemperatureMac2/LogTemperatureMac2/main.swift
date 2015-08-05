@@ -8,7 +8,7 @@
 
 import Foundation
 
-let temperatureSourceName = "Macbook"
+let temperatureSourceName = "Office"
 
 GoIO_Init()
 
