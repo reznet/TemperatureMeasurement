@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6168046E-FDBE-4795-806E-E35E7BF07EA2}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogTemperature", "LogTemperature\LogTemperature.csproj", "{9FD16619-7B1D-433A-9054-1D223967ABD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayTemperatureWebApp", "DisplayTemperatureWebApp\DisplayTemperatureWebApp.csproj", "{8B845AAF-3E62-48F9-AA87-23802AD30A46}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Measurements", "Measurements\Measurements.sqlproj", "{C499651F-7727-4668-A065-C50A2000D0A4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6168046E-FDBE-4795-806E-E35E7BF07EA2}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogHumidity", "LogHumidity\LogHumidity.csproj", "{D7FE409D-43B0-4FDB-A039-947B47363FCE}"
 EndProject
