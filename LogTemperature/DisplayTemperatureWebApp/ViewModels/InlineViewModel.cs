@@ -13,5 +13,7 @@ namespace DisplayTemperatureWebApp.ViewModels
         public IEnumerable<LatestHumidityInfo> LatestHumidities { get; set; }
 
         public IEnumerable<ChartSeriesViewModel> Temperatures { get; set; }
+
+        public IEnumerable<ChartSeriesViewModel> Humidities { get; set; }
     }
 }

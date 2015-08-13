@@ -27,7 +27,8 @@
     $(document).ready(function () {
         var temperatures = getTemperatures();
         var temperaturedata = convertToInlineChartData(temperatures);
-        renderChart('container', temperaturedata);
+        var humiditydata = convertToInlineChartData(getHumidities());
+        renderChart('container', temperaturedata.concat(humiditydata));
     });
 
     function convertToInlineChartData(data){
@@ -58,6 +59,11 @@
         var temperatures = @Html.Raw(Json.Encode(Model.Temperatures));
         return temperatures;
     }
+
+        function getHumidities() {
+            var humidities = @Html.Raw(Json.Encode(Model.Humidities));
+            return humidities;
+        }
     </script>
 
 }

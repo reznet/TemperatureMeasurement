@@ -36,6 +36,14 @@ namespace DisplayTemperatureWebApp.Controllers
 
             viewModel.Temperatures = g;
 
+            var humidities = m_measurementRepository.GetAllHumidity();
+
+            var g2 = from humidity in humidities
+                     group humidity by humidity.Source into sources
+                     select new ChartSeriesViewModel { Name = sources.Key + " (Humidity)", Values = humidities.Select(h => new ChartValueViewModel { W = h.MeasurementDateTimeUtc, Value = h.HumidityPercentage }) };
+
+            viewModel.Humidities = g2;
+
             return View(viewModel);
         }
     }
