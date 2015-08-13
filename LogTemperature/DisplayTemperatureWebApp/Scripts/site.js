@@ -5,9 +5,9 @@
     // the chart rendering function
     var temperatures = [];
     var humidities = [];
-    $.when($.getJSON("api/temperature/", function (data) {
+    $.when($.getJSON("/api/temperature/", function (data) {
         temperatures = data;
-    }), $.getJSON("api/humidity/", function (data) {
+    }), $.getJSON("/api/humidity/", function (data) {
         humidities = data;
     })).done(function () {
         var temperatureData = convertToChartData(temperatures, { sourcePropertyName: "Source", utcDatePropertyName: "MeasurementDateTimeUtc", valuePropertyName: "TemperatureFahrenheit" });
