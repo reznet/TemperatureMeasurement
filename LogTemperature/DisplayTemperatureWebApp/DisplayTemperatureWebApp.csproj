@@ -142,6 +142,8 @@
     <Compile Include="Models\MeasurementTrend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MeasurementRepository.cs" />
+    <Compile Include="ViewModels\ChartSeriesViewModel.cs" />
+    <Compile Include="ViewModels\ChartValueViewModel.cs" />
     <Compile Include="ViewModels\InlineViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,13 @@ namespace DisplayTemperatureWebApp.Controllers
 
             viewModel.LatestTemperatures = m_measurementRepository.GetLatestTemperatureInfos();
             viewModel.LatestHumidities = m_measurementRepository.GetLatestHumidityInfos();
+            var temperatures = m_measurementRepository.GetAllTemperatures();
+
+            var g = from temperature in temperatures
+                    group temperature by temperature.Source into sources
+                    select new ChartSeriesViewModel{ Name = sources.Key, Values = temperatures.Select(t => new ChartValueViewModel{ W = t.MeasurementDateTimeUtc, Value = t.TemperatureFahrenheit })};
+
+            viewModel.Temperatures = g;
 
             return View(viewModel);
         }
