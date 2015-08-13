@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D3306B7D-431A-4247-95B1-49ECB945336A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LogTemperatureMac</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>47B66300586286EA8A24EC1F5EBACD836CC6013D</key>
+		<string>https://github.com/reznet/TemperatureMeasurement.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LogTemperature/LogTemperatureMac/LogTemperatureMac.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>47B66300586286EA8A24EC1F5EBACD836CC6013D</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/reznet/TemperatureMeasurement.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>47B66300586286EA8A24EC1F5EBACD836CC6013D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>47B66300586286EA8A24EC1F5EBACD836CC6013D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TemperatureMeasurement</string>
+		</dict>
+	</array>
+</dict>
+</plist>

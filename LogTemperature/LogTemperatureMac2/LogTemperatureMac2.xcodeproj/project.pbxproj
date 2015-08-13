@@ -1,0 +1,262 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1FDB512E1A4BFAE500068492 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB512D1A4BFAE500068492 /* main.swift */; };
+		1FDB51351A4BFB0D00068492 /* libGoIOUniversal.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FDB51341A4BFB0D00068492 /* libGoIOUniversal.dylib */; };
+		1FDB51381A4BFEFD00068492 /* libGoIOUniversal.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1FDB51341A4BFB0D00068492 /* libGoIOUniversal.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1FDB51281A4BFAE500068492 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				1FDB51381A4BFEFD00068492 /* libGoIOUniversal.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1FDB512A1A4BFAE500068492 /* LogTemperatureMac2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LogTemperatureMac2; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FDB512D1A4BFAE500068492 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1FDB51341A4BFB0D00068492 /* libGoIOUniversal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGoIOUniversal.dylib; sourceTree = "<group>"; };
+		1FDB51361A4BFB1F00068492 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		1FDB51371A4BFD0900068492 /* LogTemperatureMac2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LogTemperatureMac2-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1FDB51271A4BFAE500068492 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDB51351A4BFB0D00068492 /* libGoIOUniversal.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDB51211A4BFAE500068492 = {
+			isa = PBXGroup;
+			children = (
+				1FDB51361A4BFB1F00068492 /* include */,
+				1FDB51341A4BFB0D00068492 /* libGoIOUniversal.dylib */,
+				1FDB512C1A4BFAE500068492 /* LogTemperatureMac2 */,
+				1FDB512B1A4BFAE500068492 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1FDB512B1A4BFAE500068492 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB512A1A4BFAE500068492 /* LogTemperatureMac2 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1FDB512C1A4BFAE500068492 /* LogTemperatureMac2 */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB512D1A4BFAE500068492 /* main.swift */,
+				1FDB51371A4BFD0900068492 /* LogTemperatureMac2-Bridging-Header.h */,
+			);
+			path = LogTemperatureMac2;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FDB51291A4BFAE500068492 /* LogTemperatureMac2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FDB51311A4BFAE500068492 /* Build configuration list for PBXNativeTarget "LogTemperatureMac2" */;
+			buildPhases = (
+				1FDB51261A4BFAE500068492 /* Sources */,
+				1FDB51271A4BFAE500068492 /* Frameworks */,
+				1FDB51281A4BFAE500068492 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogTemperatureMac2;
+			productName = LogTemperatureMac2;
+			productReference = 1FDB512A1A4BFAE500068492 /* LogTemperatureMac2 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1FDB51221A4BFAE500068492 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jeff Evans";
+				TargetAttributes = {
+					1FDB51291A4BFAE500068492 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1FDB51251A4BFAE500068492 /* Build configuration list for PBXProject "LogTemperatureMac2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1FDB51211A4BFAE500068492;
+			productRefGroup = 1FDB512B1A4BFAE500068492 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1FDB51291A4BFAE500068492 /* LogTemperatureMac2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1FDB51261A4BFAE500068492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FDB512E1A4BFAE500068492 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1FDB512F1A4BFAE500068492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "LogTemperatureMac2/LogTemperatureMac2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1FDB51301A4BFAE500068492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "LogTemperatureMac2/LogTemperatureMac2-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		1FDB51321A4BFAE500068492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				New_Setting = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1FDB51331A4BFAE500068492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				New_Setting = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FDB51251A4BFAE500068492 /* Build configuration list for PBXProject "LogTemperatureMac2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDB512F1A4BFAE500068492 /* Debug */,
+				1FDB51301A4BFAE500068492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1FDB51311A4BFAE500068492 /* Build configuration list for PBXNativeTarget "LogTemperatureMac2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FDB51321A4BFAE500068492 /* Debug */,
+				1FDB51331A4BFAE500068492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1FDB51221A4BFAE500068492 /* Project object */;
+}
