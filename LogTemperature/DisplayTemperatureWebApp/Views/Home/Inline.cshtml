@@ -8,6 +8,11 @@
             var text = temperatureInfo.SourceName + ": " + temperatureInfo.TemperatureFahrenheit + "°F";
             <li class="list-group-item latest-reading">@text</li>
         }
+        @foreach (var humidityInfo in Model.LatestHumidities)
+        {
+            var text = humidityInfo.SourceName + ": " + humidityInfo.HumidityPercentage + "%";
+            <li class="list-group-item latest-reading">@text</li>
+        }
     </ul>
 </div>
 <div id="history">

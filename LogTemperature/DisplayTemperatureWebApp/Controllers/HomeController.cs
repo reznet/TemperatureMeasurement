@@ -27,6 +27,7 @@ namespace DisplayTemperatureWebApp.Controllers
             var viewModel = new InlineViewModel();
 
             viewModel.LatestTemperatures = m_measurementRepository.GetLatestTemperatureInfos();
+            viewModel.LatestHumidities = m_measurementRepository.GetLatestHumidityInfos();
 
             return View(viewModel);
         }

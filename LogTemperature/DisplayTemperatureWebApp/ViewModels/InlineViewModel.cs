@@ -8,6 +8,8 @@ namespace DisplayTemperatureWebApp.ViewModels
 {
     public class InlineViewModel
     {
-        public IEnumerable<LatestTemperatureInfo> LatestTemperatures { get; set; } 
+        public IEnumerable<LatestTemperatureInfo> LatestTemperatures { get; set; }
+
+        public IEnumerable<LatestHumidityInfo> LatestHumidities { get; set; }
     }
 }
