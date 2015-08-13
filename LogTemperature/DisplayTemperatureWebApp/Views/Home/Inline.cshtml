@@ -1,0 +1,28 @@
+﻿@model DisplayTemperatureWebApp.ViewModels.InlineViewModel
+
+<div id="latest">
+    <h1>Current Readings:</h1>
+    <ul id="latest_temperatures" class="list-group">
+        @foreach(var temperatureInfo in Model.LatestTemperatures)
+        {
+            var text = temperatureInfo.SourceName + ": " + temperatureInfo.TemperatureFahrenheit + "°F";
+            <li class="list-group-item latest-reading">@text</li>
+        }
+    </ul>
+</div>
+<div id="history">
+    <h1>History:</h1>
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/sitejs")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        loadLatestTemperatures();
+        fillTemperatureChart();
+    });
+    </script>
+
+}
