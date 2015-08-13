@@ -28,21 +28,20 @@ namespace DisplayTemperatureWebApp.Controllers
 
             viewModel.LatestTemperatures = m_measurementRepository.GetLatestTemperatureInfos();
             viewModel.LatestHumidities = m_measurementRepository.GetLatestHumidityInfos();
-            var temperatures = m_measurementRepository.GetAllTemperatures();
+            var allTemperatures = m_measurementRepository.GetAllTemperatures();
+            var allHumidities = m_measurementRepository.GetAllHumidity();
 
-            var g = from temperature in temperatures
+            var temperatureSeries = from temperature in allTemperatures
                     group temperature by temperature.Source into sources
-                    select new ChartSeriesViewModel{ Name = sources.Key, Values = temperatures.Select(t => new ChartValueViewModel{ W = t.MeasurementDateTimeUtc, Value = t.TemperatureFahrenheit })};
+                    select new ChartSeriesViewModel{ Name = sources.Key, Values = allTemperatures.Select(t => new ChartValueViewModel{ MeasurementDateTimeUtc = t.MeasurementDateTimeUtc, Value = t.TemperatureFahrenheit })};
 
-            viewModel.Temperatures = g;
+            viewModel.Temperatures = temperatureSeries;
 
-            var humidities = m_measurementRepository.GetAllHumidity();
-
-            var g2 = from humidity in humidities
+            var humiditySeries = from humidity in allHumidities
                      group humidity by humidity.Source into sources
-                     select new ChartSeriesViewModel { Name = sources.Key + " (Humidity)", Values = humidities.Select(h => new ChartValueViewModel { W = h.MeasurementDateTimeUtc, Value = h.HumidityPercentage }) };
+                     select new ChartSeriesViewModel { Name = sources.Key + " (Humidity)", Values = allHumidities.Select(h => new ChartValueViewModel { MeasurementDateTimeUtc = h.MeasurementDateTimeUtc, Value = h.HumidityPercentage }) };
 
-            viewModel.Humidities = g2;
+            viewModel.Humidities = humiditySeries;
 
             return View(viewModel);
         }

@@ -37,7 +37,7 @@
         $.each(data, function(_, series){
             var d = [];
             $.each(series.Values, function(__, val){
-                var dt = toJavaScriptDate(val.W);
+                var dt = toJavaScriptDate(val.MeasurementDateTimeUtc);
                 var utc = Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds());
                 d.push([utc, val.Value]);
             });

@@ -7,7 +7,7 @@ namespace DisplayTemperatureWebApp.ViewModels
 {
     public class ChartValueViewModel
     {
-        public DateTime W { get; set; }
+        public DateTime MeasurementDateTimeUtc { get; set; }
         public double Value { get; set; }
     }
 }
