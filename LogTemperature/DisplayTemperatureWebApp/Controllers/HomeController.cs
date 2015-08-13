@@ -28,20 +28,6 @@ namespace DisplayTemperatureWebApp.Controllers
 
             viewModel.LatestTemperatures = m_measurementRepository.GetLatestTemperatureInfos();
             viewModel.LatestHumidities = m_measurementRepository.GetLatestHumidityInfos();
-            var allTemperatures = m_measurementRepository.GetAllTemperatures();
-            var allHumidities = m_measurementRepository.GetAllHumidity();
-
-            var temperatureSeries = from temperature in allTemperatures
-                    group temperature by temperature.Source into sources
-                    select new ChartSeriesViewModel{ Name = sources.Key, Values = allTemperatures.Select(t => new ChartValueViewModel{ MeasurementDateTimeUtc = t.MeasurementDateTimeUtc, Value = t.TemperatureFahrenheit })};
-
-            viewModel.Temperatures = temperatureSeries;
-
-            var humiditySeries = from humidity in allHumidities
-                     group humidity by humidity.Source into sources
-                     select new ChartSeriesViewModel { Name = sources.Key + " (Humidity)", Values = allHumidities.Select(h => new ChartValueViewModel { MeasurementDateTimeUtc = h.MeasurementDateTimeUtc, Value = h.HumidityPercentage }) };
-
-            viewModel.Humidities = humiditySeries;
 
             return View(viewModel);
         }

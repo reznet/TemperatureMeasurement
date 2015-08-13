@@ -25,45 +25,8 @@
 
     <script type="text/javascript">
     $(document).ready(function () {
-        var temperatures = getTemperatures();
-        var temperaturedata = convertToInlineChartData(temperatures);
-        var humiditydata = convertToInlineChartData(getHumidities());
-        renderChart('container', temperaturedata.concat(humiditydata));
+        fillTemperatureChart();
     });
-
-    function convertToInlineChartData(data){
-        var chartData = [];
-
-        $.each(data, function(_, series){
-            var d = [];
-            $.each(series.Values, function(__, val){
-                var dt = toJavaScriptDate(val.MeasurementDateTimeUtc);
-                var utc = Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds());
-                d.push([utc, val.Value]);
-            });
-            var s = { name:series.Name, data:d };
-            chartData.push(s);
-        });
-
-        return chartData;
-    }
-
-    function toJavaScriptDate(value) {
-        var pattern = /Date\(([^)]+)\)/;
-        var results = pattern.exec(value);
-        var dt = new Date(parseFloat(results[1]));
-        return dt;
-    }
-
-    function getTemperatures() {
-        var temperatures = @Html.Raw(Json.Encode(Model.Temperatures));
-        return temperatures;
-    }
-
-        function getHumidities() {
-            var humidities = @Html.Raw(Json.Encode(Model.Humidities));
-            return humidities;
-        }
     </script>
 
 }
